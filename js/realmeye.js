@@ -223,6 +223,7 @@ function renderDonationPopover(e, t) {
     });
     r.popover({html: !0, title: i, content: a, trigger: "hover"})
 }
+
 function addSearch(e, t, n) {
     var i = $("#" + e);
     if (storage) {
