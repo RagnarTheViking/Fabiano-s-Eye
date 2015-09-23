@@ -5,6 +5,101 @@
      * Date: 8/30/2015
      * Time: 1:36 PM
      */
+
+    $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+
+    function guildname($gid)
+    {
+        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+        foreach ($db->query("SELECT name FROM guilds WHERE id = $gid;") as $rupee)
+            return $rupee['name'];
+    }
+
+    function alivefame($id)
+    {
+        $fame = 0;
+        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+        foreach ($db->query("SELECT fame FROM characters WHERE accId = $id and dead = 0;") as $rupee)
+            $fame += $rupee['fame'];
+        return $fame;
+    }
+
+    function aliveexp($id)
+    {
+        $exp = 0;
+        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+        foreach ($db->query("SELECT exp FROM characters WHERE accId = $id and dead = 0;") as $rupee)
+            $exp += $rupee['exp'];
+        return $exp;
+    }
+
+    function alivechars($id)
+    {
+        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+        return $db->query("SELECT * FROM characters WHERE accId = $id and dead = 0;")->rowCount();
+    }
+
+    function name($id)
+    {
+        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+        return $db->query("SELECT name FROM accounts WHERE id=$id;")->fetch(PDO::FETCH_ASSOC)['name'];
+    }
+
+    function guild($id)
+    {
+        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+        return $db->query("SELECT guild FROM accounts WHERE id=$id;")->fetch(PDO::FETCH_ASSOC)['guild'];
+    }
+
+    function lastseen($id)
+    {
+        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+        return $db->query("SELECT lastSeen FROM accounts WHERE id=$id;")->fetch(PDO::FETCH_ASSOC)['lastSeen'];
+    }
+
+    function stars($id)
+    {
+        $stars = 0;
+        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+        foreach ($db->query("SELECT * FROM classStats WHERE accId = $id;") as $rupee)
+        {
+            if ($rupee['bestFame'] >= 2000) $stars += 5;
+            elseif ($rupee['bestFame'] >= 800) $stars += 4;
+            elseif ($rupee['bestFame'] >= 400) $stars += 3;
+            elseif ($rupee['bestFame'] >= 150) $stars += 2;
+            elseif ($rupee['bestFame'] >= 20) $stars += 1;
+        }
+        return $stars;
+    }
+	
+	function star($s)
+	{
+	    if ($s > 0 && $s < 14)
+		    return "light-blue";
+		elseif ($s > 13 && $s < 28)
+		    return "blue";
+		elseif ($s > 27 && $s < 42)
+		    return "red";
+		elseif ($s > 41 && $s < 56)
+		    return "orange";
+		elseif ($s > 55 && $s < 70)
+		    return "yellow";
+		elseif ($s == 70)
+		    return "white";
+	}
+	
+	function update($i)
+	{
+	    $_fame = 0; $_exp = 0;
+	    $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+		foreach ($db->query("SELECT * FROM characters WHERE accId=$i and dead=0;") as $rupee)
+        {
+            $_fame += $rupee['fame'];
+            $_exp += $rupee['exp'];
+        }
+        $db->query("UPDATE accounts SET aliveFame=$_fame, aliveExp=$_exp WHERE id =$i");
+	}
+	
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,112 +115,7 @@
         <link href="css/re.css" rel="stylesheet">
     </head>
     <body>
-        <header class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button button-default" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a class="brand navbar-brand" href="/" tabindex="-1"><img class="realm-eye" alt="eye" title="eye" src="img/eye.png"><span style="color: #333">Realm</span><span style="color: #08C">Eye</span></a>
-                </div>
-                <nav id="navbar" class="collapse navbar-collapse">
-                    <div class="navbar-right navbar-form">
-                        <div class="form-group player-search" id="a">
-                            <span class="twitter-typeahead" style="position: relative; display: inline-block; direction: ltr;">
-                                <input type="text" class="form-control tt-hint" readonly="" autocomplete="off" spellcheck="false" tabindex="-1" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input type="text" class="form-control tt-input" placeholder="Search" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
-                                <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
-                                <span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;">
-                                    <div class="tt-dataset-0"></div>
-                                </span>
-                            </span>
-                            <div class="player-guild-toggle-panel">
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default active"><input type="radio" name="player-guild-search-toggle" autocomplete="off">Player</label><label class="btn btn-default"><input type="radio" name="player-guild-search-toggle" autocomplete="off">Guild</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="auth-panel"><a id="b" href="https://www.realmeye.com/log-in" class="btn btn-default">Log
-                            In</a>
-                        </div>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guilds<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/top-guilds-by-fame">Top Guilds by Fame</a></li>
-                                <li><a href="/top-guilds-by-exp">Top Guilds by Exp</a></li>
-                                <li><a href="/servers-by-active-guilds">Servers by active Guilds</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Players<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Top
-                                    Players</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/top-players-by-fame">by Fame</a></li>
-                                        <li><a href="/top-players-by-exp">by Exp</a></li>
-                                        <li><a href="/top-players-by-account-fame">by Account Fame</a></li>
-                                        <li><a href="/top-graveyards-by/oryx-kills">by Graveyard</a></li>
-                                        <li><a href="/top-players-with-no-guild">with no Guild</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="/top-oldest-active-players">Top Oldest Active Players</a></li>
-                                <li><a href="/recently-seen-unnamed-players">Recently seen Unnamed Players</a></li>
-                                <li><a href="/number-of-players-by-rank">Number of Players by Rank</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Characters<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/top-characters">Top Characters</a></li>
-                                <li><a href="/top-archers">Top Characters by Class</a></li>
-                                <li><a href="/top-characters-with-outfit">Top Characters with Outfit</a></li>
-                                <li><a href="/top-dead-characters-by/oryx-kills">Top Dead Characters</a></li>
-                                <li><a href="/items/dye-statistics">Dye statistics</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pets<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/top-pets">Top Pets</a></li>
-                                <li><a href="/top-pets-by-ability-heal">Top Pets by Ability</a></li>
-                                <li><a href="/feed-power-of-items">Feed Power of Items</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Items<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/items/mystery-boxes">Mystery Boxes</a></li>
-                                <li><a href="/items/keys">Nexus Shop Items</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trading<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/current-offers">Current offers</a></li>
-                                <li><a href="/recent-offers">Recent offers</a></li>
-                                <li><a href="/trading-help">Help</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/q-and-a">Q &amp; A</a></li>
-                                <li><a href="/recent-changes">Recent changes</a></li>
-                                <li><a href="/mreyeball">Mr. Eyeball</a></li>
-                                <li><a href="/user-help">For Users</a></li>
-                                <li><a href="/signature-help">User Signatures</a></li>
-                                <li><a href="/donators">Donators</a></li>
-                                <li><a href="/feedback">Feedback</a></li>
-                                <li><a href="/privacy-policy">Privacy policy</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/wiki/realm-of-the-mad-god" title="RotMG Wiki">Wiki</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+    <?php require_once('banana/navbar.php') ?>
         <div class="container">
             <noscript>&lt;div class="help-block alert alert-info"&gt;It seems like you have disabled javascript. The site uses
                 it extensively, so expect a much degraded experience!&lt;/div&gt;
@@ -174,35 +164,34 @@
                             </thead>
                             <tbody>
                             <?php
-                                require_once('banana/kurk.php');
                                 $playercount = 1;
-                                $accounts = get_accounts_limit(100);
-                                while ($rupee = $accounts->fetch_assoc())
-                                {
+                                foreach ($db->query("SELECT * FROM accounts ORDER BY aliveFame DESC LIMIT 100;") as $rupee) {
+								    update($rupee['id']);
                                     $name = $rupee['name'];
-                                    $guild = $rupee['guild'];
-                                    $guildname = get_guildname_from_guildid($guild);
-                                    $alivefame = get_alivefame_from_id($rupee['id']);
-                                    $aliveexp = get_aliveexp_from_id($rupee['id']);
-                                    $characters = get_alivechars_from_id($rupee['id']);
-                                    $stars = get_stars_from_id($rupee['id']);
+                                    $guild = guild($rupee['id']);
+                                    $guildname = guildname($guild);
+                                    $alivefame = alivefame($rupee['id']);
+                                    $aliveexp = aliveexp($rupee['id']);
+                                    $characters = alivechars($rupee['id']);
+                                    $stars = stars($rupee['id']);
+                                    $lastseen = lastseen($rupee['id']);
                                     ?>
                                     <tr>
                                         <td><?= $playercount ?>.</td>
                                         <td>
                                             <div class="star-container">
                                                 <a href="player.php?name=<?= $name ?>"><?= $name ?></a>
-                                                <div class="star star-<?= $stars < 14 ? 'light-blue' : $stars < 28 ? 'blue' : $stars < 43 ? 'red' : $stars < 57 ? 'orange' : $stars < 70 ? 'yellow' : 'white' ?>"></div>
+                                                <div class="star star-<?= star($stars) ?>"></div>
                                             </div>
                                         </td>
-                                        <td><?php if ($guild) { ?><a href="/guild/<?= $guildname ?>"><?= $guildname ?></a><?php } ?></td>
+                                        <td><?php if ($guild > 0) { ?><a href="/guild/<?= $guildname ?>"><?= $guildname ?></a><?php } ?></td>
                                         <td><a href="fame-history-of-player.php?<?= $name ?>"><?= $alivefame ?></a></td>
                                         <td><?= $aliveexp ?></td>
                                         <td><?= $stars ?></td>
                                         <td><?= $characters ?></td>
                                         <td><?= round($alivefame / $characters) ?></td>
                                         <td><?= round($aliveexp / $characters) ?></td>
-                                        <td><span class="timeago" title="<?= $rupee['lastSeen'] ?>"></span></td>
+                                        <td><span class="timeago" title="<?= explode(" ", $lastseen)[0] . "T" . explode(" ", $lastseen)[1] . "Z" ?>"></span></td>
                                         <td>Localhost</td>
                                     </tr>
                                     <?php $playercount++; } ?>

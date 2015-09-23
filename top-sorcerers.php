@@ -12,113 +12,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
     <title>Top Sorcerers 1-100 | RealmEye.com</title>
-    <link rel="shortcut icon" href="/s/a2/img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
     <meta name="msapplication-config" content="none">
     <link rel="canonical" href="/top-">
     <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,rankings, top Sorcerers">
     <meta name="description" content="Top Sorcerers 1-100 in Realm of the Mad God - the free online mmo rpg game.">
-    <link href="/s/a2/css/re.css" rel="stylesheet">
-    <link href="/s/a2/css/top-characters-by-class.css" rel="stylesheet">
+    <link href="css/re.css" rel="stylesheet">
+    <link href="css/top-characters-by-class.css" rel="stylesheet">
 </head>
 <body>
-<header class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button button-default" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            <a class="brand navbar-brand" href="/" tabIndex="-1"><img class="realm-eye" alt="eye" title="eye" src="/s/a2/img/eye.png"><span style="color: #333">Realm</span><span style="color: #08C">Eye</span></a>
-        </div>
-        <nav id="navbar" class="collapse navbar-collapse">
-            <div class="navbar-right navbar-form">
-                <div class="form-group player-search" id="a">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <div class="player-guild-toggle-panel">
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default active"><input type="radio" name="player-guild-search-toggle" autocomplete="off">Player</label><label class="btn btn-default"><input type="radio" name="player-guild-search-toggle" autocomplete="off">Guild</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="auth-panel"><a id="b" href="https://www.realmeye.com/log-in" class="btn btn-default">Log
-                        In</a></div>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guilds<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/top-guilds-by-fame">Top Guilds by Fame</a></li>
-                        <li><a href="/top-guilds-by-exp">Top Guilds by Exp</a></li>
-                        <li><a href="/servers-by-active-guilds">Servers by active Guilds</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Players<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Top
-                                Players</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/top-players-by-fame">by Fame</a></li>
-                                <li><a href="/top-players-by-exp">by Exp</a></li>
-                                <li><a href="/top-players-by-account-fame">by Account Fame</a></li>
-                                <li><a href="/top-graveyards-by/oryx-kills">by Graveyard</a></li>
-                                <li><a href="/top-players-with-no-guild">with no Guild</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/top-oldest-active-players">Top Oldest Active Players</a></li>
-                        <li><a href="/recently-seen-unnamed-players">Recently seen Unnamed Players</a></li>
-                        <li><a href="/number-of-players-by-rank">Number of Players by Rank</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Characters<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/top-characters">Top Characters</a></li>
-                        <li><a href="/top-archers">Top Characters by Class</a></li>
-                        <li><a href="/top-characters-with-outfit">Top Characters with Outfit</a></li>
-                        <li><a href="/top-dead-characters-by/oryx-kills">Top Dead Characters</a></li>
-                        <li><a href="/items/dye-statistics">Dye statistics</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pets<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/top-pets">Top Pets</a></li>
-                        <li><a href="/top-pets-by-ability-heal">Top Pets by Ability</a></li>
-                        <li><a href="/feed-power-of-items">Feed Power of Items</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Items<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/items/mystery-boxes">Mystery Boxes</a></li>
-                        <li><a href="/items/keys">Nexus Shop Items</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trading<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/current-offers">Current offers</a></li>
-                        <li><a href="/recent-offers">Recent offers</a></li>
-                        <li><a href="/trading-help">Help</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/q-and-a">Q &amp; A</a></li>
-                        <li><a href="/recent-changes">Recent changes</a></li>
-                        <li><a href="/mreyeball">Mr. Eyeball</a></li>
-                        <li><a href="/user-help">For Users</a></li>
-                        <li><a href="/signature-help">User Signatures</a></li>
-                        <li><a href="/donators">Donators</a></li>
-                        <li><a href="/feedback">Feedback</a></li>
-                        <li><a href="/privacy-policy">Privacy policy</a></li>
-                    </ul>
-                </li>
-                <li><a href="/wiki/realm-of-the-mad-god" title="RotMG Wiki">Wiki</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<?php require_once('banana/navbar.php') ?>
 <div class="container">
     <noscript>
         <div class="help-block alert alert-info">It seems like you have disabled javascript. The site uses it
@@ -174,17 +77,8 @@
                     <li><a href="/top-sorcerers/901">901 - 1000</a></li>
                 </ul>
             </nav>
-            <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <div style="margin:15px 0px;text-align:center">
-                <script>var s = 0, d = document, a;
-                    try {
-                        s = d.documentElement.clientWidth || 0
-                    } catch (e) {
-                    }
-                    a = s < 758 ? ["block", 5593172932, " data-ad-format=\"auto\""] : ["inline-block;width:728px;height:90px", 7520543336];
-                    d.write('<ins class="adsbygoogle" data-ad-client="ca-pub-0854318594344150" style="display:' + a[0] + '" data-ad-slot="' + a[1] + '"' + (a[2] || '') + '></ins>');
-                    (adsbygoogle = window.adsbygoogle || []).push({})</script>
-            </div>
+
+
             <div class="table-responsive">
                 <style type="text/css">#c th:nth-child(1), #c td:nth-child(1), #c th:nth-child(4), #c td:nth-child(4), #c th:nth-child(5), #c td:nth-child(5) {
                         text-align: right
@@ -1901,32 +1795,21 @@
                     <li><a href="/top-sorcerers/901">901 - 1000</a></li>
                 </ul>
             </nav>
-            <div style="margin:15px 0px;text-align:center">
-                <script>if (document.body.clientHeight > window.innerHeight) {
-                        var s = 0, d = document, a;
-                        try {
-                            s = d.documentElement.clientWidth || 0
-                        } catch (e) {
-                        }
-                        a = s < 330 ? ["block", 6930305338, " data-ad-format=\"auto\""] : s < 366 ? ["inline-block;width:300px;height:250px", 4616393335] : s < 758 ? ["inline-block;width:336px;height:280px", 6232727339] : ["inline-block;width:728px;height:90px", 1547194137];
-                        d.write('<ins class="adsbygoogle" data-ad-client="ca-pub-0854318594344150" style="display:' + a[0] + '" data-ad-slot="' + a[1] + '"' + (a[2] || '') + '></ins>');
-                        (adsbygoogle = window.adsbygoogle || []).push({})
-                    }</script>
-            </div>
+
         </div>
     </div>
 </div>
-<script src="/s/a2/js/jquery-1.11.2.min.js"></script>
-<script src="/s/a2/js/typeahead.bundle.js"></script>
-<script src="/s/a2/js/bootstrap.min.js"></script>
-<script src="/s/a2/js/jquery.timeago.js"></script>
-<script src="/s/a2/js/jquery.timeago.en-short.js"></script>
-<script src="/s/a2/js/definition.js"></script>
-<script src="/s/a2/js/jquery.tablesorter.js"></script>
-<script src="/s/a2/js/realmeye.js"></script>
-<script src="/s/a2/js/underscore-min.js"></script>
-<script src="/s/a2/js/sheet.js"></script>
-<script src="/s/a2/js/characters.js"></script>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/typeahead.bundle.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.timeago.js"></script>
+<script src="js/jquery.timeago.en-short.js"></script>
+<script src="js/definition.js"></script>
+<script src="js/jquery.tablesorter.js"></script>
+<script src="js/realmeye.js"></script>
+<script src="js/underscore-min.js"></script>
+<script src="js/sheet.js"></script>
+<script src="js/characters.js"></script>
 <script type="text/javascript">$(function () {
         initializeSearch("a");
     });
@@ -1953,21 +1836,6 @@
     renderNumeric("c", 5);
     renderItems("c");
     renderStats("c");
-    var _gaq = _gaq || [];
-    _gaq.push(["_setAccount", "UA-36039145-1"]);
-    _gaq.push(["_setSiteSpeedSampleRate", 10]);
-    _gaq.push(["_setSampleRate", "80"]);
-    _gaq.push(["_gat._anonymizeIp"]);
-    var ssl = "https:" == document.location.protocol;
-    _gaq.push(["_setCustomVar", 1, "ssl", ssl ? "yes" : "no"]);
-    _gaq.push(["_trackPageview"]);
-    (function () {
-        var ga = document.createElement("script");
-        ga.type = "text/javascript";
-        ga.async = true;
-        ga.src = (ssl ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(ga, s);
-    })();</script>
+    </script>
 </body>
 </html>
