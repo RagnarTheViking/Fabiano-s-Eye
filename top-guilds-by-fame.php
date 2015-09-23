@@ -12,12 +12,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
         <title>Top RotMG Guilds by Fame 1-100 | RealmEye.com</title>
-        <link rel="shortcut icon" href="/s/a2/img/favicon.ico">
+        <link rel="shortcut icon" href="img/favicon.ico">
         <meta name="msapplication-config" content="none">
         <link rel="canonical" href="/top-guilds-by-fame">
         <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,top guilds,by fame">
         <meta name="description" content="Top Guilds by Fame 1-100 in Realm of the Mad God the free MMO RPG game.">
-        <link href="/s/a2/css/re.css" rel="stylesheet">
+        <link href="css/re.css" rel="stylesheet">
     </head>
     <body>
         <header class="navbar navbar-default navbar-static-top">
@@ -25,7 +25,7 @@
                 <div class="navbar-header">
                     <button type="button button-default" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a class="brand navbar-brand" href="/" tabIndex="-1"><img class="realm-eye" alt="eye" title="eye" src="/s/a2/img/eye.png"><span style="color: #333">Realm</span><span style="color: #08C">Eye</span></a>
+                    <a class="brand navbar-brand" href="/" tabIndex="-1"><img class="realm-eye" alt="eye" title="eye" src="img/eye.png"><span style="color: #333">Realm</span><span style="color: #08C">Eye</span></a>
                 </div>
                 <nav id="navbar" class="collapse navbar-collapse">
                     <div class="navbar-right navbar-form">
@@ -2297,14 +2297,14 @@
                 </div>
             </div>
         </div>
-        <script src="/s/a2/js/jquery-1.11.2.min.js"></script>
-        <script src="/s/a2/js/typeahead.bundle.js"></script>
-        <script src="/s/a2/js/bootstrap.min.js"></script>
-        <script src="/s/a2/js/jquery.timeago.js"></script>
-        <script src="/s/a2/js/jquery.timeago.en-short.js"></script>
-        <script src="/s/a2/js/definition.js"></script>
-        <script src="/s/a2/js/jquery.tablesorter.js"></script>
-        <script src="/s/a2/js/realmeye.js"></script>
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="js/typeahead.bundle.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.timeago.js"></script>
+        <script src="js/jquery.timeago.en-short.js"></script>
+        <script src="js/definition.js"></script>
+        <script src="js/jquery.tablesorter.js"></script>
+        <script src="js/realmeye.js"></script>
         <script type="text/javascript">$(function () {
             initializeSearch("a");
             });

@@ -12,12 +12,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
         <title>Top RotMG Guilds by Exp 1-100 | RealmEye.com</title>
-        <link rel="shortcut icon" href="/s/a2/img/favicon.ico">
+        <link rel="shortcut icon" href="img/favicon.ico">
         <meta name="msapplication-config" content="none">
         <link rel="canonical" href="/top-guilds-by-exp">
         <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,top guilds,by exp">
         <meta name="description" content="Top Guilds by Experience Points1-100 in Realm of the Mad God - the free online MMO RPG game.">
-        <link href="/s/a2/css/re.css" rel="stylesheet">
+        <link href="css/re.css" rel="stylesheet">
     </head>
     <body>
         <header class="navbar navbar-default navbar-static-top">
@@ -25,7 +25,7 @@
                 <div class="navbar-header">
                     <button type="button button-default" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a class="brand navbar-brand" href="/" tabIndex="-1"><img class="realm-eye" alt="eye" title="eye" src="/s/a2/img/eye.png"><span style="color: #333">Realm</span><span style="color: #08C">Eye</span></a>
+                    <a class="brand navbar-brand" href="/" tabIndex="-1"><img class="realm-eye" alt="eye" title="eye" src="img/eye.png"><span style="color: #333">Realm</span><span style="color: #08C">Eye</span></a>
                 </div>
                 <nav id="navbar" class="collapse navbar-collapse">
                     <div class="navbar-right navbar-form">
@@ -63,17 +63,17 @@
                                         <li><a href="/top-players-with-no-guild">with no Guild</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/top-oldest-active-players">Top Oldest Active Players</a></li>
-                                <li><a href="/recently-seen-unnamed-players">Recently seen Unnamed Players</a></li>
-                                <li><a href="/number-of-players-by-rank">Number of Players by Rank</a></li>
+                                <li><a href="top-oldest-active-players.php">Top Oldest Active Players</a></li>
+                                <li><a href="recently-seen-unnamed-players.php">Recently seen Unnamed Players</a></li>
+                                <li><a href="number-of-players-by-rank.php">Number of Players by Rank</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Characters<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/top-characters">Top Characters</a></li>
-                                <li><a href="/top-archers">Top Characters by Class</a></li>
-                                <li><a href="/top-characters-with-outfit">Top Characters with Outfit</a></li>
+                                <li><a href="top-characters.php">Top Characters</a></li>
+                                <li><a href="top-archers.php">Top Characters by Class</a></li>
+                                <li><a href="top-characters-with-outfit.php">Top Characters with Outfit</a></li>
                                 <li><a href="/top-dead-characters-by/oryx-kills">Top Dead Characters</a></li>
                                 <li><a href="/items/dye-statistics">Dye statistics</a></li>
                             </ul>
@@ -81,9 +81,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pets<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/top-pets">Top Pets</a></li>
-                                <li><a href="/top-pets-by-ability-heal">Top Pets by Ability</a></li>
-                                <li><a href="/feed-power-of-items">Feed Power of Items</a></li>
+                                <li><a href="top-pets.php">Top Pets</a></li>
+                                <li><a href="top-pets-by-ability-heal.php">Top Pets by Ability</a></li>
+                                <li><a href="feed-power-of-items.php">Feed Power of Items</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -104,14 +104,14 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/q-and-a">Q &amp; A</a></li>
-                                <li><a href="/recent-changes">Recent changes</a></li>
-                                <li><a href="/mreyeball">Mr. Eyeball</a></li>
-                                <li><a href="/user-help">For Users</a></li>
-                                <li><a href="/signature-help">User Signatures</a></li>
-                                <li><a href="/donators">Donators</a></li>
-                                <li><a href="/feedback">Feedback</a></li>
-                                <li><a href="/privacy-policy">Privacy policy</a></li>
+                                <li><a href="q-and-a.php">Q &amp; A</a></li>
+                                <li><a href="recent-changes.php">Recent changes</a></li>
+                                <li><a href="mreyeball.php">Mr. Eyeball</a></li>
+                                <li><a href="user-help.php">For Users</a></li>
+                                <li><a href="signature-help.php">User Signatures</a></li>
+                                <li><a href="donators.php">Donators</a></li>
+                                <li><a href="feedback.php">Feedback</a></li>
+                                <li><a href="privacy-policy.php">Privacy policy</a></li>
                             </ul>
                         </li>
                         <li><a href="/wiki/realm-of-the-mad-god" title="RotMG Wiki">Wiki</a></li>
@@ -144,18 +144,6 @@
                             <li><a href="/top-guilds-by-exp/901">901 - 1000</a></li>
                         </ul>
                     </nav>
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <div style="margin:15px 0px;text-align:center">
-                        <script>var s = 0, d = document, a;
-                            try {
-                                s = d.documentElement.clientWidth || 0
-                            } catch (e) {
-                            }
-                            a = s < 758 ? ["block", 5593172932, " data-ad-format=\"auto\""] : ["inline-block;width:728px;height:90px", 7520543336];
-                            d.write('<ins class="adsbygoogle" data-ad-client="ca-pub-0854318594344150" style="display:' + a[0] + '" data-ad-slot="' + a[1] + '"' + (a[2] || '') + '></ins>');
-                            (adsbygoogle = window.adsbygoogle || []).push({})
-                        </script>
-                    </div>
                     <div class="table-responsive">
                         <style type="text/css">#c th:nth-child(1), #c td:nth-child(1), #c th:nth-child(3), #c td:nth-child(3), #c th:nth-child(4), #c td:nth-child(4), #c th:nth-child(6), #c td:nth-child(6), #c th:nth-child(7), #c td:nth-child(7), #c th:nth-child(8), #c td:nth-child(8), #c th:nth-child(9), #c td:nth-child(9), #c th:nth-child(10), #c td:nth-child(10) {
                             text-align: right
@@ -2273,31 +2261,19 @@
                             <li><a href="/top-guilds-by-exp/901">901 - 1000</a></li>
                         </ul>
                     </nav>
-                    <div style="margin:15px 0px;text-align:center">
-                        <script>if (document.body.clientHeight > window.innerHeight) {
-                            var s = 0, d = document, a;
-                            try {
-                                s = d.documentElement.clientWidth || 0
-                            } catch (e) {
-                            }
-                            a = s < 330 ? ["block", 6930305338, " data-ad-format=\"auto\""] : s < 366 ? ["inline-block;width:300px;height:250px", 4616393335] : s < 758 ? ["inline-block;width:336px;height:280px", 6232727339] : ["inline-block;width:728px;height:90px", 1547194137];
-                            d.write('<ins class="adsbygoogle" data-ad-client="ca-pub-0854318594344150" style="display:' + a[0] + '" data-ad-slot="' + a[1] + '"' + (a[2] || '') + '></ins>');
-                            (adsbygoogle = window.adsbygoogle || []).push({})
-                            }
-                        </script>
-                    </div>
                 </div>
             </div>
         </div>
-        <script src="/s/a2/js/jquery-1.11.2.min.js"></script>
-        <script src="/s/a2/js/typeahead.bundle.js"></script>
-        <script src="/s/a2/js/bootstrap.min.js"></script>
-        <script src="/s/a2/js/jquery.timeago.js"></script>
-        <script src="/s/a2/js/jquery.timeago.en-short.js"></script>
-        <script src="/s/a2/js/definition.js"></script>
-        <script src="/s/a2/js/jquery.tablesorter.js"></script>
-        <script src="/s/a2/js/realmeye.js"></script>
-        <script type="text/javascript">$(function () {
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="js/typeahead.bundle.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.timeago.js"></script>
+        <script src="js/jquery.timeago.en-short.js"></script>
+        <script src="js/definition.js"></script>
+        <script src="js/jquery.tablesorter.js"></script>
+        <script src="js/realmeye.js"></script>
+        <script type="text/javascript">
+            $(function () {
             initializeSearch("a");
             });
             initializeLoginButton("b");
@@ -2322,22 +2298,6 @@
             renderNumeric("c", 8);
             renderNumeric("c", 9);
             renderNumeric("c", 10);
-            var _gaq = _gaq || [];
-            _gaq.push(["_setAccount", "UA-36039145-1"]);
-            _gaq.push(["_setSiteSpeedSampleRate", 10]);
-            _gaq.push(["_setSampleRate", "80"]);
-            _gaq.push(["_gat._anonymizeIp"]);
-            var ssl = "https:" == document.location.protocol;
-            _gaq.push(["_setCustomVar", 1, "ssl", ssl ? "yes" : "no"]);
-            _gaq.push(["_trackPageview"]);
-            (function () {
-            var ga = document.createElement("script");
-            ga.type = "text/javascript";
-            ga.async = true;
-            ga.src = (ssl ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(ga, s);
-            })();
         </script>
     </body>
 </html>
