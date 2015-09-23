@@ -203,7 +203,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
     <title>Pets of the RotMG Player: <?= $name ?> | RealmEye.com</title>
     <link rel="shortcut icon" href="img/favicon.ico">
-    <meta name="msapplication-config" content="none">
+
     <link href="css/re.css" rel="stylesheet">
 </head>
 <body>

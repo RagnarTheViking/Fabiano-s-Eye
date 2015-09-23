@@ -5,18 +5,13 @@
      * Date: 9/3/2015
      * Time: 10:32 PM
      */
-
-    $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
         <title>Admins | RealmEye.com</title>
         <link rel="shortcut icon" href="img/favicon.ico">
-        <meta name="msapplication-config" content="none">
         <link rel="canonical" href="/donators">
         <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,donators">
         <meta name="description" content="RotMG Players who donated to RealmEye.com.">
@@ -33,7 +28,6 @@
                     <div class="row">
                         <div class="col-md-offset-2 col-md-8">
                             <h3>Administrators</h3>
-                            <!--<p>Thanks to you all, who helped to start RealmEye.com!</p>-->
                             <div class="table-responsive">
                                 <style type="text/css">#c th:nth-child(1), #c td:nth-child(1), #c th:nth-child(4), #c td:nth-child(4) {
                                     text-align: right
@@ -50,15 +44,16 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                        $countingey = 1;
+                                        $db = new PDO('mysql:host=localhost;dbname=rotmgprod;charset=utf8', 'root', '');
+                                        $count = 1;
                                         foreach ($db->query("SELECT * FROM accounts WHERE rank > 2 AND banned = 0 ORDER BY id;") as $rupee) { ?>
                                         <tr>
-                                            <td><?= $countingey ?>.</td>
+                                            <td><?= $count ?>.</td>
                                             <td><a href="player.php?name=<?= $rupee['name'] ?>"><?= $rupee['name'] ?></a></td>
                                             <td><span class="timeago" title="<?= explode(" ", $rupee['regTime'])[0] . "T" . explode(" ", $rupee['regTime'])[1] . "Z" ?>"></span></td>
                                             <td><span class="timeago" title="<?= explode(" ", $rupee['lastSeen'])[0] . "T" . explode(" ", $rupee['lastSeen'])[1] . "Z" ?>"></td>
                                         </tr>
-                                    <?php $countingey++; } ?>
+                                    <?php $count++; } ?>
                                     </tbody>
                                 </table>
                             </div>

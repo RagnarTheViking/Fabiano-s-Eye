@@ -10,10 +10,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
+
         <title>Top RotMG Guilds by Exp 1-100 | RealmEye.com</title>
         <link rel="shortcut icon" href="img/favicon.ico">
-        <meta name="msapplication-config" content="none">
+
         <link rel="canonical" href="/top-guilds-by-exp">
         <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,top guilds,by exp">
         <meta name="description" content="Top Guilds by Experience Points1-100 in Realm of the Mad God - the free online MMO RPG game.">

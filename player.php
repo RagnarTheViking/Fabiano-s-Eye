@@ -97,7 +97,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
+
         <title>Characters of the RotMG Player: <?= $name ?> | RealmEye.com</title>
         <link rel="shortcut icon" href="img/favicon.ico">
         <link href="css/re.css" rel="stylesheet">

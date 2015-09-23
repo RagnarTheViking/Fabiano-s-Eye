@@ -10,10 +10,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
+
         <title>Servers by Active Guilds | RealmEye.com</title>
         <link rel="shortcut icon" href="img/favicon.ico">
-        <meta name="msapplication-config" content="none">
+
         <link rel="canonical" href="/servers-by-active-guilds">
         <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,rankings, servers by active guilds, by fame">
         <meta name="description" content="The list of servers ranked by active guilds in Realm of the Mad God - the free online MMO RPG game.">

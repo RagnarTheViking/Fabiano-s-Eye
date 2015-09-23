@@ -105,10 +105,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
+
         <title>Top RotMG Players by Fame 1-101 | RealmEye.com</title>
         <link rel="shortcut icon" href="img/favicon.ico">
-        <meta name="msapplication-config" content="none">
+
         <link rel="canonical" href="/top-players-by-fame">
         <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,top players,by fame">
         <meta name="description" content="Top Players in Realm of the Mad God by fame 1-101.">

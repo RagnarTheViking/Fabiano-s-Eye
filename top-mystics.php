@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
     <title>Top Mystics 1-100 | RealmEye.com</title>
     <link rel="shortcut icon" href="img/favicon.ico">
-    <meta name="msapplication-config" content="none">
+
     <link rel="canonical" href="/top-">
     <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,rankings, top Mystics">
     <meta name="description" content="Top Mystics 1-100 in Realm of the Mad God - the free online mmo rpg game.">

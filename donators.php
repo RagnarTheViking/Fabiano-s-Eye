@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
     <title>Donators | RealmEye.com</title>
     <link rel="shortcut icon" href="img/favicon.ico">
-    <meta name="msapplication-config" content="none">
+
     <link rel="canonical" href="/donators">
     <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,donators">
     <meta name="description" content="RotMG Players who donated to RealmEye.com.">

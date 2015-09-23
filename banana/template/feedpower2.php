@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, target-densityDpi=device-dpi">
     <title>Feed Power of Items in RotMG | RealmEye.com</title>
     <link rel="shortcut icon" href="img/favicon.ico">
-    <meta name="msapplication-config" content="none">
+
     <link rel="canonical" href="feed-power-of-items.php">
     <meta name="keywords" content="realm of the mad god, rotmg, statistics, stats,feed power,items">
     <meta name="description" content="Feed Power of Items in Realm of The Mad God the free online MMO RPG game.">
