@@ -21,7 +21,7 @@
     <link href="css/re.css" rel="stylesheet">
 </head>
 <body>
-<?php require_once('banana/navbar.php') ?>
+<?php require_once('banana/template/navbar.php') ?>
 <div class="container">
     <noscript>
         <div class="help-block alert alert-info">It seems like you have disabled javascript. The site uses it

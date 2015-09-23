@@ -84,7 +84,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/top-pets">Top Pets</a></li>
                                 <li><a href="/top-pets-by-ability-heal">Top Pets by Ability</a></li>
-                                <li><a href="/feed-power-of-items">Feed Power of Items</a></li>
+                                <li><a href="feed-power-of-items.php">Feed Power of Items</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

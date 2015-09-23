@@ -103,7 +103,7 @@
         <link href="css/re.css" rel="stylesheet">
     </head>
     <body>
-        <?php require_once('banana/navbar.php') ?>
+        <?php require_once('banana/template/navbar.php') ?>
         <div class="container">
             <noscript>&lt;div class="help-block alert alert-info"&gt;It seems like you have disabled javascript. The site uses
                 it extensively, so expect a much degraded experience!&lt;/div&gt;
