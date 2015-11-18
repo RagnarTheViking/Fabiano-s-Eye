@@ -1,0 +1,22 @@
+div.class-selector {
+    margin: 0 20px 20px;
+    text-align: center
+}
+
+a.class-selector {
+    display: inline-block;
+    width: 68px;
+    height: 66px;
+    padding: 8px 0 0
+}
+
+a.class-selector .private-character {
+    width: 46px;
+    height: 46px
+}
+
+.character-label {
+    width: 64px;
+    font-size: .7em;
+    line-height: 10px
+}
