@@ -1,182 +1,175 @@
-function statsTable(e, t, n, i, a) {
+function statsTable(t, e, n, i, a) {
     function r(i, a) {
         var r = !0;
         h.push("<tr>");
-        for (var l = i; a >= l; ++l) c(f[l], n[l], e[l], t[l]), r &= n[l];
+        for (var l = i; a >= l; ++l) c(f[l], n[l], t[l], e[l]), r &= n[l];
         d(i, a), h.push("</tr>"), r || (o(i, a), s(i, a))
     }
 
     function o(i, r) {
         h.push("<tr>");
-        for (var o = i; r >= o; ++o) l(n[o], e[o], t[o], a[o]);
+        for (var o = i; r >= o; ++o) l(n[o], t[o], e[o], a[o]);
         d(i, r), h.push("</tr>")
     }
 
     function s(a, r) {
         h.push("<tr>");
-        for (var o = a; r >= o; ++o) u(f[o], n[o], e[o], t[o], i[o]);
+        for (var o = a; r >= o; ++o) u(f[o], n[o], t[o], e[o], i[o]);
         d(a, r), h.push("</tr>")
     }
 
-    function c(e, t, n, i) {
-        h.push("<td"), t && h.push(' class="maxed"'), h.push(">"), h.push(e), h.push(": "), h.push(n), 0 !== i && (h.push("("), i > 0 && h.push("+"), h.push(i), h.push(")")), h.push("</td>")
+    function c(t, e, n, i) {
+        h.push("<td"), e && h.push(' class="maxed"'), h.push(">"), h.push(t), h.push(": "), h.push(n), 0 !== i && (h.push("("), i > 0 && h.push("+"), h.push(i), h.push(")")), h.push("</td>")
     }
 
-    function l(e, t, n, i) {
-        var a = t - n - i;
-        h.push('<td class="from-avg' + (0 > a ? " below-avg" : " above-avg") + '">'), e || (0 == a ? h.push("average") : (a > 0 && h.push("+"), h.push(a), h.push(" from avg"))), h.push("</td>")
+    function l(t, e, n, i) {
+        var a = e - n - i;
+        h.push('<td class="from-avg' + (0 > a ? " below-avg" : " above-avg") + '">'), t || (0 == a ? h.push("average") : (a > 0 && h.push("+"), h.push(a), h.push(" from avg"))), h.push("</td>")
     }
 
-    function u(e, t, n, i, a) {
-        h.push('<td class="to-max">'), t || (h.push(a - n + i), ("HP" == e || "MP" == e) && (h.push(" ("), h.push(Math.ceil((a - n + i) / 5)), h.push(")")), h.push(" to max")), h.push("</td>")
+    function u(t, e, n, i, a) {
+        h.push('<td class="to-max">'), e || (h.push(a - n + i), ("HP" == t || "MP" == t) && (h.push(" ("), h.push(Math.ceil((a - n + i) / 5)), h.push(")")), h.push(" to max")), h.push("</td>")
     }
 
-    function d(e, t) {
-        for (var n = 0; 3 - (t - e + 1) > n; ++n) h.push("<td></td>")
+    function d(t, e) {
+        for (var n = 0; 3 - (e - t + 1) > n; ++n) h.push("<td></td>")
     }
-
     var h = ['<table class="stats-table">'],
         f = ["HP", "MP", "ATT", "DEF", "SPD", "VIT", "WIS", "DEX"];
     return r(0, 1), r(2, 4), r(5, 7), h.push("</table>"), h.join("")
 }
 
-function renderStats(e) {
-    $("#" + e + " .player-stats").each(function() {
-        var e = $(this),
-            t = [0, 1, 2, 3, 4, 6, 7, 5],
-            n = JSON.parse(e.attr("data-stats")),
-            i = JSON.parse(e.attr("data-bonuses")),
-            a = JSON.parse(e.attr("data-class")),
-            r = JSON.parse(e.attr("data-level")),
-            o = classInfoById[a],
-            s = o[5],
-            c = $.map(t, function(e) {
-                return s[e]
+function renderStats(id) {
+    $("#" + id + " .player-stats").each(function() {
+        var elem = $(this),
+            order = [0, 1, 2, 3, 4, 6, 7, 5],
+            stats = JSON.parse(elem.attr("data-stats")),
+            bonus = JSON.parse(elem.attr("data-bonuses")),
+            classs = JSON.parse(elem.attr("data-class")),
+            level = JSON.parse(elem.attr("data-level")),
+            info = classInfoById[classs],
+            maxStats = info[5],
+            orderedMaxStats = $.map(order, function(index) {
+                return maxStats[index]
             }),
-            l = [!1, !1, !1, !1, !1, !1, !1, !1],
-            u = 0,
-            d = o[4],
-            h = o[3],
-            f = $.map(d, function(e, t) {
-                return h[t] + e * (r - 1)
+            maxedStats = [!1, !1, !1, !1, !1, !1, !1, !1],
+            maxedStatsAmount = 0,
+            statsIncrease = info[4],
+            statsBase = info[3],
+            f = $.map(statsIncrease, function(t, e) {
+                return statsBase[e] + t * (level - 1)
             }),
-            f = $.map(t, function(e) {
-                return f[e]
+            f = $.map(order, function(t) {
+                return f[t]
             });
-        $.each(c, function(e, t) {
-            var a = n[e] - i[e];
-            a >= t && (n[e] = t + i[e], l[e] = !0, u += 1)
-        }), e.html(u + '/8 <i class="glyphicon glyphicon-info-sign"></i>'), e.popover({
+        $.each(orderedMaxStats, function(t, e) {
+            var a = stats[t] - bonus[t];
+            a >= e && (stats[t] = e + bonus[t], maxedStats[t] = !0, maxedStatsAmount += 1)
+        }), elem.html(maxedStatsAmount + '/8 <i class="glyphicon glyphicon-info-sign"></i>'), elem.popover({
             html: !0,
-            content: statsTable(n, i, l, c, f),
+            content: statsTable(stats, bonus, maxedStats, orderedMaxStats, f),
             trigger: "manual",
             template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
-        }), e.parent().hover(function() {
-            e.popover("show")
+        }), elem.parent().hover(function() {
+            elem.popover("show")
         }, function() {
-            e.popover("hide")
+            elem.popover("hide")
         })
     })
 }
 
-function alternativesTable(e) {
-    var t = '<table class="alternatives-table"><thead><tr><th>Server</th><th>Price</th><th>Quantity</th><th>Time Left</th></tr></thead><tbody>';
-    return $.each(e, function(e, n) {
-        t += "<tr>", $.each(n, function(e, n) {
-            t += "<td>", 3 == e ? 2147483647 != n ? (t += "<", t += n + 1, t += " min") : t += "new" : t += n, t += "</td>"
-        }), t += "</tr>"
-    }), t += "</tbody></table>"
+function alternativesTable(t) {
+    var e = '<table class="alternatives-table"><thead><tr><th>Server</th><th>Price</th><th>Quantity</th><th>Time Left</th></tr></thead><tbody>';
+    return $.each(t, function(t, n) {
+        e += "<tr>", $.each(n, function(t, n) {
+            e += "<td>", 3 == t ? 2147483647 != n ? (e += "<", e += n + 1, e += " min") : e += "new" : e += n, e += "</td>"
+        }), e += "</tr>"
+    }), e += "</tbody></table>"
 }
 
-function renderAlternatives(e, t) {
-    $("#" + e + " .cheapest-server").each(function() {
-        var e = $(this),
-            t = JSON.parse(e.attr("data-alternatives"));
-        t.length > 0 && (e.append(' <i class="glyphicon glyphicon-info-sign"></i>'), e.popover({
+function renderAlternatives(t, e) {
+    $("#" + t + " .cheapest-server").each(function() {
+        var t = $(this),
+            e = JSON.parse(t.attr("data-alternatives"));
+        e.length > 0 && (t.append(' <i class="glyphicon glyphicon-info-sign"></i>'), t.popover({
             html: !0,
-            content: alternativesTable(t),
+            content: alternativesTable(e),
             trigger: "manual",
             title: "Other servers",
             placement: "left"
-        }), e.parent().hover(function() {
-            e.popover("show")
+        }), t.parent().hover(function() {
+            t.popover("show")
         }, function() {
-            e.popover("hide")
+            t.popover("hide")
         }))
     })
 }
 
-function linkForItem(e) {
-    var t = items[e] || items[-1];
-    return 0 != t[1] && 10 != t[1] && 26 != t[1] || 3180 == e ? "/wiki/" + t[0].toLowerCase().replace(/[\'\ ]/g, "-").replace(/[^a-z0-9-]/g, "") : null
+function linkForItem(t) {
+    var e = items[t] || items[-1];
+    return 0 != e[1] && 10 != e[1] && 26 != e[1] || 3180 == t ? "/wiki/" + e[0].toLowerCase().replace(/[\'\ ]/g, "-").replace(/[^a-z0-9-]/g, "") : null
 }
 
-function renderItems(e) {
-    makeItemsIn($("#" + e)).each(function() {
+function renderItems(t) {
+    makeItemsIn($("#" + t)).each(function() {
         $(this).wrap(function() {
-            var e = linkForItem($(this).attr("data-item"));
-            return null == e ? !1 : '<a href="' + e + '" target="_blank"/>'
+            var t = linkForItem($(this).attr("data-item"));
+            return null == t ? !1 : '<a href="' + t + '" target="_blank"/>'
         })
     })
 }
 
-function makeItemsIn(e) {
-    return $(".item", e).each(function() {
+function makeItemsIn(t) {
+    return $(".item", t).each(function() {
         makeItem($(this))
     })
 }
 
-function renderItemTable(e) {
-    return ['<table class="stats-table"><tbody><tr><td>Fame Bonus:</td><td>', e[5], "%</td></tr><tr><td>Feed Power:</td><td>", e[6], "</td></tr></tbody></table>"].join("")
+function renderItemTable(t) {
+    return ['<table class="stats-table"><tbody><tr><td>Fame Bonus:</td><td>', t[5], "%</td></tr><tr><td>Feed Power:</td><td>", t[6], "</td></tr></tbody></table>"].join("")
 }
 
-function makeItem(e) {
-    var t = items[e.attr("data-item")] || items[-1],
-        n = 10 == t[1] || 0 == t[1] || 26 == t[1] ? "" : -1 == t[2] ? " UT" : " T" + t[2];
-    e.css("background-position", "-" + t[3] + "px -" + t[4] + "px").popover({
-        title: t[0] + n,
+function makeItem(t) {
+    var e = items[t.attr("data-item")] || items[-1],
+        n = 10 == e[1] || 0 == e[1] || 26 == e[1] ? "" : -1 == e[2] ? " UT" : " T" + e[2];
+    t.css("background-position", "-" + e[3] + "px -" + e[4] + "px").popover({
+        title: e[0] + n,
         trigger: "hover",
         container: "body",
-        placement: function(e, t) {
-            var n = $(t).offset().top - $(window).scrollTop();
+        placement: function(t, e) {
+            var n = $(e).offset().top - $(window).scrollTop();
             return 110 > n ? "bottom" : "top"
         },
         html: !0,
-        content: renderItemTable(t)
+        content: renderItemTable(e)
     })
 }
 
-function renderPets(e) {
-    $("#" + e + " .pet").each(function() {
-        var e = $(this),
-            t = items[e.attr("data-item")];
-        t && e.css("background-position", "-" + t[1] + "px -" + t[2] + "px").attr("title", t[0])
+function renderPets(t) {
+    $("#" + t + " .pet").each(function() {
+        var t = $(this),
+            e = items[t.attr("data-item")];
+        e && t.css("background-position", "-" + e[1] + "px -" + e[2] + "px").attr("title", e[0])
     })
 }
 
-function renderChests(e) {
-    $("#" + e + " .chestUnlocked").each(function() {
-
+function renderArticle(t, e) {
+    renderItems(t), $("#" + t + " td:nth-child(" + e + ") .item").each(function() {
+        var t = $(this),
+            e = items[t.attr("data-item")] || items[-1],
+            n = t.closest("td").next();
+        n.text(e[0])
     })
 }
 
-function renderArticle(e, t) {
-    renderItems(e), $("#" + e + " td:nth-child(" + t + ") .item").each(function() {
-        var e = $(this),
-            t = items[e.attr("data-item")] || items[-1],
-            n = e.closest("td").next();
-        n.text(t[0])
-    })
-}
-
-function renderNumeric(e, t, n) {
-    var i = $("#" + e + " td:nth-child(" + t + ")"),
+function renderNumeric(t, e, n) {
+    var i = $("#" + t + " td:nth-child(" + e + ")"),
         a = i.map(function() {
-            for (var e = $(this); e.children().length;) e = $(e.children()[0]);
-            return e
+            for (var t = $(this); t.children().length;) t = $(t.children()[0]);
+            return t
         });
-    a.text(function(e, t) {
-        return $(this).closest("td").data("value", t), formatNumber(t)
+    a.text(function(t, e) {
+        return $(this).closest("td").data("value", e), formatNumber(e)
     }), n || i.hover(function() {
         showDiffs($(this))
     }, function() {
@@ -184,76 +177,76 @@ function renderNumeric(e, t, n) {
     })
 }
 
-function showDiffs(e) {
-    var t = e.data("value");
-    siblingsDo(e, 25, function(e, n) {
+function showDiffs(t) {
+    var e = t.data("value");
+    siblingsDo(t, 25, function(t, n) {
         if ("" != n) {
-            var i = n - t,
+            var i = n - e,
                 a = '<span class="diff"><span';
             0 > i ? a += ' class="diff-smaller">-' : i > 0 && (a += ' class="diff-bigger">+'), i % 1 != 0 && (i = i.toFixed(1)), a += formatNumber(Math.abs(i)), a += "</span>", this.append(a)
         }
     })
 }
 
-function hideDiffs(e) {
-    siblingsDo(e, 25, function() {
+function hideDiffs(t) {
+    siblingsDo(t, 25, function() {
         $(".diff", this).remove()
     })
 }
 
-function siblingsDo(e, t, n) {
-    siblingsSelectedDo(e, t, function(e) {
-        return e.prev()
-    }, n), siblingsSelectedDo(e, t, function(e) {
-        return e.next()
+function siblingsDo(t, e, n) {
+    siblingsSelectedDo(t, e, function(t) {
+        return t.prev()
+    }, n), siblingsSelectedDo(t, e, function(t) {
+        return t.next()
     }, n)
 }
 
-function siblingsSelectedDo(e, t, n, i) {
-    for (var a = e.parent(), r = e.index(), o = 0; t > o && (a = n(a), a.length); ++o) {
+function siblingsSelectedDo(t, e, n, i) {
+    for (var a = t.parent(), r = t.index(), o = 0; e > o && (a = n(a), a.length); ++o) {
         var s = a.find("td:nth-child(" + (r + 1) + ")"),
             c = s.data("value");
         i.call(s, o + 1, c)
     }
 }
 
-function formatNumber(e) {
-    var t = /(\d+)(\d{3})/;
-    for (e += ""; t.test(e);) e = e.replace(t, "$1 $2");
-    return e
+function formatNumber(t) {
+    var e = /(\d+)(\d{3})/;
+    for (t += ""; e.test(t);) t = t.replace(e, "$1 $2");
+    return t
 }
 
-function formatTimeLeft(e, t) {
-    $("#" + e + " td:nth-child(" + t + ")").text(function(e, t) {
-        var n = parseInt(t);
+function formatTimeLeft(t, e) {
+    $("#" + t + " td:nth-child(" + e + ")").text(function(t, e) {
+        var n = parseInt(e);
         return 2147483647 == n ? "new" : 0 == n ? "<1 minute" : "<" + (n + 1) + " minutes"
     })
 }
 
-function makeSortable(e, t) {
-    $("#" + e).tablesorter({
-        headers: t
+function makeSortable(t, e) {
+    $("#" + t).tablesorter({
+        headers: e
     })
 }
 
-function bookmarkPlayer(e) {
-    bookmarkName(e, "players")
+function bookmarkPlayer(t) {
+    bookmarkName(t, "players")
 }
 
-function bookmarkGuild(e) {
-    bookmarkName(e, "guilds")
+function bookmarkGuild(t) {
+    bookmarkName(t, "guilds")
 }
 
-function bookmarkName(e, t) {
+function bookmarkName(t, e) {
     if (storage) {
-        var n = storage[t];
+        var n = storage[e];
         n = n ? JSON.parse(n) : [];
-        var i = $.inArray(e, n); - 1 != i && n.splice(i, 1), n.unshift(e), n.splice(200, n.length - 200), storage[t] = JSON.stringify(n)
+        var i = $.inArray(t, n); - 1 != i && n.splice(i, 1), n.unshift(t), n.splice(200, n.length - 200), storage[e] = JSON.stringify(n)
     }
 }
 
-function colorForRank(e) {
-    var t;
+function colorForRank(t) {
+    var e;
     return $.each([
         [13, "light-blue"],
         [27, "blue"],
@@ -262,23 +255,22 @@ function colorForRank(e) {
         [69, "yellow"],
         [70, "white"]
     ], function(n, i) {
-        return t = i[1], e <= i[0] ? !1 : void 0
-    }), t
+        return e = i[1], t <= i[0] ? !1 : void 0
+    }), e
 }
 
-function renderDonationPopover(e, t) {
-    function n(e) {
-        a += '<span class="timeago" title="' + t[e] + '"></span>'
+function renderDonationPopover(t, e) {
+    function n(t) {
+        a += '<span class="timeago" title="' + e[t] + '"></span>'
     }
-
-    var i, a, r = $("#" + e + " img"),
+    var i, a, r = $("#" + t + " img"),
         o = r.parent().prev().text(),
         s = r.attr("src"),
         c = s.slice(0, -1 * "crown-place.png".length) + "crown.png";
-    if (t.length) {
+    if (e.length) {
         i = "Thanks " + o + "!", a = "<span>" + o + " donated ", n(0);
-        for (var l = 1; l < t.length - 1; ++l) a += ", ", n(l);
-        t.length > 1 && (a += " and ", n(t.length - 1)), a += "</span>", a = $(a), $(".timeago", a).timeago()
+        for (var l = 1; l < e.length - 1; ++l) a += ", ", n(l);
+        e.length > 1 && (a += " and ", n(e.length - 1)), a += "</span>", a = $(a), $(".timeago", a).timeago()
     } else i = o + " hasn't donated yet.", a = "Click on the crown to donate", r.hover(function() {
         $(this).attr("src", c)
     }, function() {
@@ -292,41 +284,40 @@ function renderDonationPopover(e, t) {
     })
 }
 
-function addSearch(e, t, n) {
-    var i = $("#" + e);
+function addSearch(t, e, n) {
+    var i = $("#" + t);
     if (storage) {
         var a = storage[n];
         a && (a = JSON.parse(storage[n]), i.typeahead({
             highlight: !0
         }, {
-            displayKey: function(e) {
-                return e
+            displayKey: function(t) {
+                return t
             },
-            source: function(e, t) {
-                t(typeaheadFilter(e, a))
+            source: function(t, e) {
+                e(typeaheadFilter(t, a))
             }
-        }).on("typeahead:selected", function(e, n) {
-            window.location.pathname = t + "/" + n
-        }).keypress(function(e) {
-            13 == e.which && (window.location.pathname = t + "/" + $(i).val())
+        }).on("typeahead:selected", function(t, n) {
+            window.location.pathname = e + "/" + n
+        }).keypress(function(t) {
+            13 == t.which && (window.location.pathname = e + "/" + $(i).val())
         }))
     }
 }
 
-function addPlayerSearch(e) {
-    addSearch(e, "/player", "players")
+function addPlayerSearch(t) {
+    addSearch(t, "/player", "players")
 }
 
-function addGuildSearch(e) {
-    addSearch(e, "/guild", "guilds")
+function addGuildSearch(t) {
+    addSearch(t, "/guild", "guilds")
 }
 
-function initializeSearch(e) {
-    function t(e) {
-        window.location.pathname = "/" + ("Player" == l ? "player" : "guild") + "/" + e
+function initializeSearch(t) {
+    function e(t) {
+        window.location.pathname = "/" + ("Player" == l ? "player" : "guild") + "/" + t
     }
-
-    var n = $("#" + e),
+    var n = $("#" + t),
         i = $(".player-guild-toggle-panel", n),
         a = $("input[type=text]", n),
         r = $("label", n),
@@ -351,16 +342,16 @@ function initializeSearch(e) {
     }).typeahead({
         highlight: !0
     }, {
-        displayKey: function(e) {
-            return e
+        displayKey: function(t) {
+            return t
         },
-        source: function(e, t) {
-            t(typeaheadFilter(e, u[l]))
+        source: function(t, e) {
+            e(typeaheadFilter(t, u[l]))
         }
-    }).on("typeahead:selected", function(e, n) {
-        return t(n), !0
-    }).keypress(function(e) {
-        13 == e.which && (window.location.pathname = "/" + l.toLowerCase() + "/" + a.val())
+    }).on("typeahead:selected", function(t, n) {
+        return e(n), !0
+    }).keypress(function(t) {
+        13 == t.which && (window.location.pathname = "/" + l.toLowerCase() + "/" + a.val())
     }), r.mousedown(function() {
         c = !1
     }).click(function() {
@@ -368,189 +359,197 @@ function initializeSearch(e) {
     }).button()
 }
 
-function typeaheadFilter(e, t, n) {
+function typeaheadFilter(t, e, n) {
     n = n || 9;
     var i = [],
-        a = filterQuery(e),
+        a = filterQuery(t),
         r = a.toLowerCase();
-    $.each(t, function(e, t) {
-        var e = t.toLowerCase().indexOf(r); - 1 != e && (i[e] ? i[e].push(t) : i[e] = [t])
+    $.each(e, function(t, e) {
+        var t = e.toLowerCase().indexOf(r); - 1 != t && (i[t] ? i[t].push(e) : i[t] = [e])
     });
     var o = [a];
-    return $.each(i, function(e, t) {
-        t && (o.length > n || (t.sort(), $.each(t, function(e, t) {
-            o.length > n || o.push(t)
+    return $.each(i, function(t, e) {
+        e && (o.length > n || (e.sort(), $.each(e, function(t, e) {
+            o.length > n || o.push(e)
         })))
     }), o
 }
 
-function filterQuery(e) {
-    return e.replace(/[^a-zA-Z ]/g, "").replace(/^ +| +$/g, "").replace(/ +/g, " ")
+function filterQuery(t) {
+    return t.replace(/[^a-zA-Z ]/g, "").replace(/^ +| +$/g, "").replace(/ +/g, " ")
 }
 
 function indicateSelectedItem() {
     $(window.location.hash).parent().css("border-left", "3px solid #777")
 }
 
-function makeChooserRedirector(e, t) {
-    $("#" + e).change(function() {
-        window.location.pathname = t + $(this).val()
+function makeChooserRedirector(t, e) {
+    $("#" + t).change(function() {
+        window.location.pathname = e + $(this).val()
     })
 }
 
-function addAnchorsInDescription(e, t) {
-    var n = new RegExp("(https?:\\/\\/)?(www\\.)?(youtube\\.com|youtu\\.be|imgur\\.com|i\\.imgur\\.com|puu\\.sh|twitch\\.tv|reddit\\.com|redd\\.it|github\\.com|community\\.kabam\\.com|realmeye\\.com|bluenosersguide\\.weebly\\.com|pfiffel\\.com|hummingbird\\.me)(\\/[\\w\\/\\.\\?=&;_-]+)?" + (t ? "|" + t : ""), "gi"),
-        i = $("#" + e);
+function addAnchorsInDescription(t, e) {
+    var n = new RegExp("(https?:\\/\\/)?(www\\.)?(youtube\\.com|youtu\\.be|imgur\\.com|i\\.imgur\\.com|puu\\.sh|twitch\\.tv|reddit\\.com|redd\\.it|github\\.com|community\\.kabam\\.com|realmeye\\.com|bluenosersguide\\.weebly\\.com|pfiffel\\.com|hummingbird\\.me)(\\/[\\w\\/\\.\\?=&;_-]+)?" + (e ? "|" + e : ""), "gi"),
+        i = $("#" + t);
     $(".description-line", i).each(function() {
-        $(this).html($(this).html().replace(n, function(e) {
-            var t = e;
-            /^https?:\/\//.test(e) || (t = "http://" + e);
-            var n = /realmeye\.com/.test(e) ? ' rel="nofollow"' : ' rel="nofollow external"';
-            return '<a href="' + encodeURI(t) + '"' + n + ">" + e + "</a>"
+        $(this).html($(this).html().replace(n, function(t) {
+            var e = t;
+            /^https?:\/\//.test(t) || (e = "http://" + t);
+            var n = /realmeye\.com/.test(t) ? ' rel="nofollow"' : ' rel="nofollow external"';
+            return '<a href="' + encodeURI(e) + '"' + n + ">" + t + "</a>"
         }))
     })
 }
 
-function renderMail(e) {
-    $("#" + e).attr("href", $.map([109, 97, 105, 108, 116, 111, 58, 105, 110, 102, 111, 64, 114, 101, 97, 108, 109, 101, 121, 101, 46, 99, 111, 109], function(e) {
-        return String.fromCharCode(e)
+function renderMail(t) {
+    $("#" + t).attr("href", $.map([109, 97, 105, 108, 116, 111, 58, 105, 110, 102, 111, 64, 114, 101, 97, 108, 109, 101, 121, 101, 46, 99, 111, 109], function(t) {
+        return String.fromCharCode(t)
     }).join(""))
 }
 
-function initializeLoginButton(e) {
-    $("#" + e).click(function() {
+function initializeLoginButton(t) {
+    $("#" + t).click(function() {
         $(this).button("loading")
     })
 }
 
-function initializeLogin(e, t) {
-    var n = $("#" + e),
+function initializeLogin(t, e) {
+    var n = $("#" + t),
         i = $("button", n),
         a = !1,
         r = $("form", n);
     i.click(function() {
         r.trigger("submit")
-    }), $("input").keypress(function(e) {
-        13 == e.which && (e.preventDefault(), r.trigger("submit"))
-    }), r.submit(function(e) {
+    }), $("input").keypress(function(t) {
+        13 == t.which && (t.preventDefault(), r.trigger("submit"))
+    }), r.submit(function(t) {
         if (i.button("loading"), a) return !0;
         var n = $(":input[name=username]", r).val(),
             o = $(":input[name=password]", r).val(),
             s = $(":input[name=bindToIp]", r).is(":checked") ? "t" : "f";
-        return n && o ? (callSpec(t, {
+        return n && o ? (callSpec(e, {
             username: n,
             password: o,
             bindToIp: s
-        }).done(function(e, t, n) {
-            "OK" == e ? (a = !0, r.submit()) : (i.button("reset"), $("#wrong-password .alert-danger").text("Invalid username or password!"), $("#wrong-password").removeClass("hide"))
+        }).done(function(t, e, n) {
+            "OK" == t ? (a = !0, r.submit()) : (i.button("reset"), $("#wrong-password .alert-danger").text("Invalid username or password!"), $("#wrong-password").removeClass("hide"))
         }).fail(function() {
             i.button("reset"), $("#wrong-password .alert-danger").text("An error occured. Please try again!"), $("#wrong-password").removeClass("hide")
-        }), void e.preventDefault()) : (i.button("reset"), !1)
+        }), void t.preventDefault()) : (i.button("reset"), !1)
     })
 }
 
-function initializeLogout(e) {
-    $("#" + e).click(function(e) {
-        var t = window.location.pathname;
+function initializeLogout(t) {
+    $("#" + t).click(function(t) {
+        var e = window.location.pathname;
         $.ajax({
             type: "POST",
             url: "/logout"
-        }).done(function(e) {
-            var n = t.indexOf("#"); - 1 != n && (t = t.slice(0, n)), window.location.href = t
+        }).done(function(t) {
+            var n = e.indexOf("#"); - 1 != n && (e = e.slice(0, n)), window.location.href = e
         })
     })
 }
 
-function initializeEditDescription(e, t) {
-    var n = $("#" + e + " > button"),
-        i = $("#" + e + " .modal");
+function initializeEditDescription(t, e) {
+    var n = $("#" + t + " > button"),
+        i = $("#" + t + " .modal");
     n.click(function() {
         i.modal("show")
     }), $("button", i).click(function() {
-        var e = {};
+        var t = {};
         $.each(["line1", "line2", "line3"], function() {
-            e[this] = $("input[name=" + this + "]", i).val()
-        }), callSpecAndReload(t, e)
+            t[this] = $("input[name=" + this + "]", i).val()
+        }), callSpecAndReload(e, t)
     })
 }
 
-function initializeClickHandlerWithAction(e, t) {
-    $("#" + e).click(function() {
-        callSpecAndReload(t)
+function initializeClickHandlerWithAction(t, e) {
+    $("#" + t).click(function() {
+        callSpecAndReload(e)
     })
 }
 
-function petAbilityTable(e, t, n, i, a) {
-    function r(e, t) {
-        o.push("<tr><td>"), o.push(e), o.push("</td><td>"), o.push(formatNumber(t)), o.push("</td></tr>")
+function petAbilityTable(t, e, n, i, a) {
+    function r(t, e) {
+        o.push("<tr><td>"), o.push(t), o.push("</td><td>"), o.push(formatNumber(e)), o.push("</td></tr>")
     }
-
     var o = ['<table class="stats-table pet-ability-stats-table">'];
-    return r("Level:", e), r("Points:", n), e != t && (r('<abbr title="Feed power needed for Next Level">Next</abbr>:', i + " fp"), r('<abbr title="Feed power needed for Max Level(' + t + ')">Max</abbr>:', a + " fp")), o.push("</table>"), o.join("")
+    return r("Level:", t), r("Points:", n), t != e && (r('<abbr title="Feed power needed for Next Level">Next</abbr>:', i + " fp"), r('<abbr title="Feed power needed for Max Level(' + e + ')">Max</abbr>:', a + " fp")), o.push("</table>"), o.join("")
 }
 
-function renderPetAbilityPopover(e, t, n) {
-    $("#" + e + " td:nth-child(" + t + ") .pet-ability").each(function() {
-        var e = $(this),
-            t = e.data("pet-ability");
-        e.html(t[1] + ' <i class="glyphicon glyphicon-info-sign"></i>'), e.popover({
-            title: t[0],
+function renderPetAbilityPopover(t, e, n) {
+    $("#" + t + " td:nth-child(" + e + ") .pet-ability").each(function() {
+        var t = $(this),
+            e = t.data("pet-ability");
+        t.html(e[1] + ' <i class="glyphicon glyphicon-info-sign"></i>'), t.popover({
+            title: e[0],
             html: !0,
-            content: petAbilityTable(t[1], t[2], t[3], t[4], t[5]),
+            content: petAbilityTable(e[1], e[2], e[3], e[4], e[5]),
             trigger: "click"
         })
     })
 }
 
-function completeData(e) {
-    var t = document.cookie.match(/session=([0-9a-zA-Z]+)/);
-    return t && t[1] && (e.session = t[1]), e
+function completeData(t) {
+    var e = document.cookie.match(/session=([0-9a-zA-Z]+)/);
+    return e && e[1] && (t.session = e[1]), t
 }
 
-function callSpec(e, t) {
-    return $.extend(e.data, t), completeData(e.data), $.ajax(e)
+function callSpec(t, e) {
+    return $.extend(t.data, e), completeData(t.data), $.ajax(t)
 }
 
-function callSpecAndReload(e, t, n) {
+function callSpecAndReload(t, e, n) {
     var i = window.location.href;
-    callSpec(e, t).done(function(e) {
-        if (!n || n(e)) {
-            var t = i.indexOf("#"); - 1 != t && (i = i.slice(0, t)), window.location.href = i
+    callSpec(t, e).done(function(t) {
+        if (!n || n(t)) {
+            var e = i.indexOf("#"); - 1 != e && (i = i.slice(0, e)), window.location.href = i
         }
     })
 }
 
-function initializeHideCookieBanner(e) {
-    $("#" + e + " .close").click(function() {
-        document.cookie = "hideCookieBanner=true;path=/;expires=Wed, 01 Jan 2020 00:00:00 GMT", $("#" + e).hide()
+function initializeCookieConsentBanner(t) {
+    function e() {
+        var t = new Date;
+        t.setYear(t.getFullYear() + 1), document.cookie = "cookiePolicyAccepted=true;path=/;expires=" + t.toUTCString()
+    }
+    $("#" + t + " .btn-primary").click(function() {
+        e(), $("#" + t).hide()
+    }), $("a").each(function() {
+        var t = $(this);
+        t.attr("href") && /^\/$|^\/[^\/]|^https?:\/\/www\.realmeye\.com\//.test(t.attr("href")) && t.click(e)
+    }), $("#" + t + " .btn-default").click(function() {
+        window.location.href = "/privacy-policy"
     })
 }
 
-function convertColumnToLocalTime(e, t) {
-    $("#" + e + " td:nth-child(" + t + ")").text(function(e, t) {
-        if (!t) return "";
-        var n = new Date(t);
+function convertColumnToLocalTime(t, e) {
+    $("#" + t + " td:nth-child(" + e + ")").text(function(t, e) {
+        if (!e) return "";
+        var n = new Date(e);
         return [n.getFullYear(), "-", padWithZeros(n.getMonth() + 1, 2), "-", padWithZeros(n.getDate(), 2), " ", padWithZeros(n.getHours(), 2), ":", padWithZeros(n.getMinutes(), 2)].join("")
     })
 }
 
-function padWithZeros(e, t) {
-    return e += "", e.length >= t ? e : new Array(t - e.length + 1).join("0") + e
+function padWithZeros(t, e) {
+    return t += "", t.length >= e ? t : new Array(e - t.length + 1).join("0") + t
 }
 
-function initializeAlertCloseButton(e, t) {
-    $("#" + e).click(function() {
-        document.cookie = "closedAlertVersion=" + t + ";path=/;expires=Wed, 01 Jan 2020 00:00:00 GMT"
+function initializeAlertCloseButton(t, e) {
+    $("#" + t).click(function() {
+        document.cookie = "closedAlertVersion=" + e + ";path=/;expires=Wed, 01 Jan 2020 00:00:00 GMT"
     })
 }
-$.fn.blindLeftIn = function(e, t, n) {
+$.fn.blindLeftIn = function(t, e, n) {
     return this.animate({
         marginLeft: 0
-    }, $.speed(e, t, n))
-}, $.fn.blindLeftOut = function(e, t, n) {
+    }, $.speed(t, e, n))
+}, $.fn.blindLeftOut = function(t, e, n) {
     return this.animate({
         marginLeft: -this.outerWidth()
-    }, $.speed(e, t, n))
+    }, $.speed(t, e, n))
 }, window.storage = !1;
 var fail, uid;
 try {
@@ -747,11 +746,11 @@ window.console || (window.console = {
 for (var i = 0; i < classInfos.length; ++i) classInfoById[classInfos[i][0]] = classInfos[i];
 $.tablesorter.addParser({
     id: "guildRank",
-    is: function(e) {
+    is: function(t) {
         return !1
     },
-    format: function(e) {
-        switch (e) {
+    format: function(t) {
+        switch (t) {
             case "Founder":
                 return 5;
             case "Leader":
@@ -769,11 +768,11 @@ $.tablesorter.addParser({
     type: "numeric"
 }), $.tablesorter.addParser({
     id: "petRarity",
-    is: function(e) {
+    is: function(t) {
         return !1
     },
-    format: function(e) {
-        switch (e) {
+    format: function(t) {
+        switch (t) {
             case "Divine":
                 return 5;
             case "Legendary":
@@ -791,35 +790,34 @@ $.tablesorter.addParser({
     type: "numeric"
 }), $.tablesorter.addParser({
     id: "accountCreated",
-    is: function(e) {
+    is: function(t) {
         return !1
     },
-    format: function(e, t, n) {
+    format: function(t, e, n) {
         return $("span", n).data("rank")
     },
     type: "numeric"
 }), $.tablesorter.addParser({
     id: "guildStarDistribution",
-    is: function(e) {
+    is: function(t) {
         return !1
     },
-    format: function(e, t, n) {
+    format: function(t, e, n) {
         return $(".guild-star-distribution", n).data("sorter")
     },
     type: "numeric"
 }), $(function() {
-    function e() {
+    function t() {
         $(".table-responsive").each(function() {
-            var e = !!$(".scroll-alert", this).length;
-            this.scrollWidth > this.clientWidth ? e || $("table", this).before('<small style="margin-left: 4px" class="label label-default scroll-alert">Scroll the table horizontally to see all columns!</small>') : e && $(".scroll-alert", this).remove()
+            var t = !!$(".scroll-alert", this).length;
+            this.scrollWidth > this.clientWidth ? t || $("table", this).before('<small style="margin-left: 4px" class="label label-default scroll-alert">Scroll the table horizontally to see all columns!</small>') : t && $(".scroll-alert", this).remove()
         })
     }
-
-    $("span.numeric").text(function(e, t) {
-        return formatNumber(t)
-    }), $("span.timeago").timeago(), $("ul.dropdown-menu [data-toggle=dropdown]").on("click", function(e) {
-        e.preventDefault(), e.stopPropagation(), $("ul.dropdown-menu [data-toggle=dropdown]").parent().removeClass("open"), $(this).parent().addClass("open")
-    }), $(window).on("resize", e), e()
+    $("span.numeric").text(function(t, e) {
+        return formatNumber(e)
+    }), $("span.timeago").timeago(), $("ul.dropdown-menu [data-toggle=dropdown]").on("click", function(t) {
+        t.preventDefault(), t.stopPropagation(), $("ul.dropdown-menu [data-toggle=dropdown]").parent().removeClass("open"), $(this).parent().addClass("open")
+    }), $(window).on("resize", t), t()
 }), window.RealmEye = {
     converter: function() {
         return this.converterObject || (this.converterObject = new Showdown.converter)
@@ -827,21 +825,20 @@ $.tablesorter.addParser({
     sanitizer: function() {
         return this.sanitizerObject || (this.sanitizerObject = new Sanitize(Sanitize.Config.RELAXED))
     },
-    sanitize: function(e, t) {
-        var n = this.converter().makeHtml(t || e.text()),
+    sanitize: function(t, e) {
+        var n = this.converter().makeHtml(e || t.text()),
             i = $("<div>" + n + "</div>"),
             a = this.sanitizer().clean_node(i[0]);
-        e.empty().append(a)
+        t.empty().append(a)
     },
-    initializeEditor: function(e, t, n, i, a, r) {
+    initializeEditor: function(t, e, n, i, a, r) {
         function o() {
-            n.is(":checked") ? (i.addClass("markdown"), RealmEye.sanitize(i, e.val())) : (i.removeClass("markdown"), i.text(e.val()))
+            n.is(":checked") ? (i.addClass("markdown"), RealmEye.sanitize(i, t.val())) : (i.removeClass("markdown"), i.text(t.val()))
         }
-
-        e.data("ajaxSpec") !== a && (e.data("ajaxSpec", a), e.off(), t.off(), n.off(), a.data.body && e.val(a.data.body), n.prop("checked", a.data.markdown), n.change(o), e.on("input propertychange", o), t.click(function() {
-            t.attr("disabled", "disabled").addClass("disabled").off();
+        t.data("ajaxSpec") !== a && (t.data("ajaxSpec", a), t.off(), e.off(), n.off(), a.data.body && t.val(a.data.body), n.prop("checked", a.data.markdown), n.change(o), t.on("input propertychange", o), e.click(function() {
+            e.attr("disabled", "disabled").addClass("disabled").off();
             var i = {
-                body: e.val(),
+                body: t.val(),
                 markdown: n.is(":checked") ? "t" : "f"
             };
             r && r(i), callSpecAndReload(a, i)
